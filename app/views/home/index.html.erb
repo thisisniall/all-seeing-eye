@@ -1,2 +1,41 @@
 <h1>Home#index</h1>
 <p>Find me in app/views/home/index.html.erb</p>
+
+<%= form_tag("/search", method: "get") do %>
+	<%=label_tag(:whosaidit, "Tweets By Username:") %>
+	<%=text_field_tag(:whosaidit) %>
+	<%=label_tag(:query, "Topic/Keywords:") %>
+	<%=text_field_tag(:query) %>
+	<%= submit_tag("Submit") %>
+<% end %>
+
+<% if @tweets %>
+	<ul>
+		<% @tweets.each do |tweet| %>
+			<li><%= tweet.text %></li>
+			<li><%= tweet.source %></li>
+<!-- 			foranalysis will end up as a single text block for Indico to analyze -->
+			<% @foranalysis = @foranalysis + tweet.text %>
+		<% end %>
+	</ul>
+
+	<h2>So, let's get some information about that person you just searched for!</h2>
+
+	<h3> Sentiment Analysis: </h3>
+	<%= Indico.sentiment(@foranalysis) %>
+
+	<h3> Personality Analysis: </h3>
+	<%= Indico.personality(@foranalysis) %>
+
+	<h3> Political Analysis: </h3>
+	<%= Indico.political(@foranalysis) %>
+
+	<h3> Topical Analysis: </h3>
+	<%= Indico.text_tags(@foranalysis) %>
+
+	<h3> Sorted Hash: </h3>
+	<!-- takes the 5 most relevant topics to the tweeter -->
+	<% @topical = Indico.text_tags(@foranalysis).sort_by {|k,v| v}.reverse %>
+	<%= @topical.take(5) %>
+
+<% end %>
