@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  twittersearch_id: 
+  topic: MyString
+  value: 1.5
+
+two:
+  twittersearch_id: 
+  topic: MyString
+  value: 1.5

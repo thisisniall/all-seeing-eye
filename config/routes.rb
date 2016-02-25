@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
 
   # resources :home
-  get 'home/index'
+  get 'home/index' => 'home#index'
   get 'search' => 'home#search'
   get 'analyze' => 'home#analyze'
+
+  get '/log-in' => 'sessions#new'
+  post '/log-in' => 'sessions#create'
+  get 'log-out' => 'sessions#destroy'
+  
+  root 'home#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

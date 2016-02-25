@@ -54,6 +54,8 @@
 	<%= submit_tag("Submit") %>
 <% end %>
 
+
+
 <% if @analyzetext %>
 
 	<h3> Sentiment Analysis: </h3>
@@ -73,5 +75,11 @@
 	<h3>Myers-Briggs Indicator, Top 4, By Likelihood: </h3>
 	<% @twittermyersbriggs = Indico.personas(@analyzetext).sort_by {|k,v| v}.reverse  %>
 	<%= @twittermyersbriggs.take(4)%>
+
+	<h3> Top 10 text keywords: </h3>
+	<!-- uses some algorithm to find 10 keywords -->
+	<%  @textkeywords = Indico.keywords(@analyzetext, {version: "2"}) %>
+	<%= @textkeywords.sort_by {|k,v| v}.reverse.take(10) %>
+	
 
 <% end %>
