@@ -1,7 +1,9 @@
 source 'https://rubygems.org'
 
+gem 'geocoder'
+# including geocoder to allow us to store searches by location
+
 gem 'indico'
-# indico documentation mentions to use require indico, but this might work?
 # will need to switch to indico-enterprise if it becomes for-profit
 
 gem 'twitter'

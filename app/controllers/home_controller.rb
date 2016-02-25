@@ -8,6 +8,12 @@ class HomeController < ApplicationController
   	@whosaidit = params[:whosaidit]
   	@query = params[:query]
 
+    if params[:enableRT] == true
+      @RToption = "-RT"
+    else
+      @RToption = ""
+    end
+
   	# user and keyword
   	# @tweets = $twitter.search("to:#{@whosaidit} "+ @query + " filter:images").take(20)
 
@@ -15,11 +21,16 @@ class HomeController < ApplicationController
   	# @tweets = $twitter.search(@query + " filter:images").take(20)
 
   	# just user
-  	@tweets = $twitter.search("from:#{@whosaidit}" + " filter:images").take(20)
+  	@tweets = $twitter.search("from:#{@whosaidit}" + " filter:images "+"#{@RToption}").take(30)
   
   	# puts @tweets.first.inspect
-  	@foranalysis = ""
+  	@twitteranalysis = ""
   	render "index"
-
   end
+
+  def analyze
+    @analyzetext = params[:text_to_analyze].to_s
+    render "index"
+  end
+
 end
