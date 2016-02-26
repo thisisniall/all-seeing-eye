@@ -6,10 +6,7 @@
 <%= form_tag("/search", method: "get") do %>
 	<%=label_tag(:whosaidit, "Tweets By Username:") %>
 	<%=text_field_tag(:whosaidit) %>
-<!-- 	<%=label_tag(:query, "Topic/Keywords:") %>
-	<%=text_field_tag(:query) %> -->
-
-<!-- 	Note: Including RTs in search results will cause indico to treat something RT'd the same way as if they said it originally.  -->
+<!-- 	Note: Including RTs in search results will cause indico to treat something RT'd the same way as if they said it originally. Currently non-functional.  -->
 	<%=label_tag(:enableRT, "Check to include retweets in search results?") %>
 	<%=check_box_tag(:enableRT) %>
 	<%= submit_tag("Submit") %>
@@ -19,7 +16,6 @@
 	<ul>
 		<% @tweets.each do |tweet| %>
 			<li><%= tweet.text %></li>
-			<li><%= tweet.source %></li>
 <!-- 			foranalysis will end up as a single text block for Indico to analyze -->
 			<% @twitteranalysis = @twitteranalysis + tweet.text %>
 		<% end %>
@@ -39,7 +35,7 @@
 	<h3> Topical Analysis, Top 10, Sorted Hash: </h3>
 	<!-- takes the 10 most relevant topics to the tweeter -->
 	<% @topical = Indico.text_tags(@twitteranalysis).sort_by {|k,v| v}.reverse %>
-	<%= @topical.take(10) %>
+	<%= @topical = @topical.take(10) %>
 
 	<h3>Myers-Briggs Indicator, Top 4, By Likelihood: </h3>
 	<% @twittermyersbriggs = Indico.personas(@twitteranalysis).sort_by {|k,v| v}.reverse  %>
@@ -53,8 +49,6 @@
 	<%=text_area(:text_to_analyze, cols: 20, rows: 40) %>
 	<%= submit_tag("Submit") %>
 <% end %>
-
-
 
 <% if @analyzetext %>
 
