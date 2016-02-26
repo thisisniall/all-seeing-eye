@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  textsearch_id: 
+  personality_type: MyString
+  value: 1.5
+
+two:
+  textsearch_id: 
+  personality_type: MyString
+  value: 1.5

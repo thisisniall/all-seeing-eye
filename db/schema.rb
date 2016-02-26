@@ -11,10 +11,58 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160225221530) do
+ActiveRecord::Schema.define(version: 20160225223255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "text_mbs", force: :cascade do |t|
+    t.integer  "textsearch_id"
+    t.string   "personality_type"
+    t.float    "value"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "text_mbs", ["textsearch_id"], name: "index_text_mbs_on_textsearch_id", using: :btree
+
+  create_table "textkeywords", force: :cascade do |t|
+    t.integer  "textsearch_id"
+    t.string   "keyword"
+    t.float    "value"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "textkeywords", ["textsearch_id"], name: "index_textkeywords_on_textsearch_id", using: :btree
+
+  create_table "textsearches", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "character_length"
+    t.float    "sentiment"
+    t.float    "personality_agreeableness"
+    t.float    "personality_conscientiousness"
+    t.float    "personality_extraversion"
+    t.float    "personality_openness"
+    t.float    "political_conservative"
+    t.float    "political_green"
+    t.float    "political_liberal"
+    t.float    "political_libertarian"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "textsearches", ["user_id"], name: "index_textsearches_on_user_id", using: :btree
+
+  create_table "texttopics", force: :cascade do |t|
+    t.integer  "textsearch_id"
+    t.string   "topic"
+    t.float    "value"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "texttopics", ["textsearch_id"], name: "index_texttopics_on_textsearch_id", using: :btree
 
   create_table "twitter_mbs", force: :cascade do |t|
     t.integer  "twittersearch_id"
@@ -65,6 +113,10 @@ ActiveRecord::Schema.define(version: 20160225221530) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "text_mbs", "textsearches"
+  add_foreign_key "textkeywords", "textsearches"
+  add_foreign_key "textsearches", "users"
+  add_foreign_key "texttopics", "textsearches"
   add_foreign_key "twitter_mbs", "twittersearches"
   add_foreign_key "twittersearches", "users"
   add_foreign_key "twittertopics", "twittersearches"

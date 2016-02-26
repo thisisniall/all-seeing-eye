@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  textsearch_id: 
+  keyword: MyString
+  value: 1.5
+
+two:
+  textsearch_id: 
+  keyword: MyString
+  value: 1.5

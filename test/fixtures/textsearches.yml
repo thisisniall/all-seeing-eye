@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  character_length: 1
+  sentiment: 1.5
+  personality_agreeableness: 1.5
+  personality_conscientiousness: 1.5
+  personality_extraversion: 1.5
+  personality_openness: 1.5
+  political_conservative: 1.5
+  political_green: 1.5
+  political_liberal: 1.5
+  political_libertarian: 1.5
+
+two:
+  user_id: 
+  character_length: 1
+  sentiment: 1.5
+  personality_agreeableness: 1.5
+  personality_conscientiousness: 1.5
+  personality_extraversion: 1.5
+  personality_openness: 1.5
+  political_conservative: 1.5
+  political_green: 1.5
+  political_liberal: 1.5
+  political_libertarian: 1.5
