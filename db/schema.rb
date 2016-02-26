@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160225223255) do
+ActiveRecord::Schema.define(version: 20160226233239) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 20160225223255) do
     t.float    "political_libertarian"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
+    t.boolean  "retweet"
   end
 
   add_index "twittersearches", ["user_id"], name: "index_twittersearches_on_user_id", using: :btree

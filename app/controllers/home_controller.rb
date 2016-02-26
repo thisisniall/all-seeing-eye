@@ -1,5 +1,7 @@
 class HomeController < ApplicationController
   def index
+    @user = current_user
+    @twittersearch = Twittersearch.new
   end
 
   #additional whosaidit parameter for search by user

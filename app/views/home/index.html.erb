@@ -12,6 +12,16 @@
 	<%= submit_tag("Submit") %>
 <% end %>
 
+<!-- SWITCH TO FORM-FOR -->
+<%= form_for @twittersearch %> 
+	<%= label(:tweeter, "Tweets by Username") %>
+	<%= text_field(:tweeter)%>
+	<%=label(:enableRT, "Check to include retweets in search results?") %>
+	<%=check_box(:enableRT) %>
+<% end %>
+
+<!-- HORIZON - WE KNOW WHAT YOU THINK -->
+
 <% if @tweets %>
 	<ul>
 		<% @tweets.each do |tweet| %>

@@ -12,6 +12,7 @@ class TwittersearchesController < ApplicationController
 		@whosaidit = twittersearch_params[:tweeter]
 		@twitteranalysis = ""
 
+		# enabling retweets? will need adjustment
 	    if params[:enableRT] == true
 	      @RToption = "-RT"
 	    else
@@ -23,9 +24,10 @@ class TwittersearchesController < ApplicationController
 			@twitteranalysis = @twitteranalysis + tweet.text
 		end
 
-		sentiment = sentiment(@twitteranalysis)
-		personality = personality(@twitteranalysis)
-		political = political(@twitteranalysis)
+		#### calls to indico APIs
+		sentiment = Indico.sentiment(@twitteranalysis)
+		personality = Indico.personality(@twitteranalysis)
+		political = Indico.political(@twitteranalysis)
 		####
 
 		@user = current_user
