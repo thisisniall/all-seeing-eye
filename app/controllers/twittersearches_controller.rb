@@ -1,6 +1,5 @@
 class TwittersearchesController < ApplicationController
-
-
+	
 	def new
 		@user = current_user
 		@twittersearch = Twittersearch.new

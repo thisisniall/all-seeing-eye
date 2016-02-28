@@ -3,6 +3,7 @@ class HomeController < ApplicationController
     if current_user
       @user = current_user
       @twittersearch = Twittersearch.new
+      @textsearch = Textsearch.new
     else
       redirect_to log_in_path
     end

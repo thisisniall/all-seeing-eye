@@ -63,9 +63,9 @@
 
 <!-- BACK-END CONNECTION -->
 <h2> Back-end-connected Text </h2>
-<%= form_for @textanalysis do |f| %> 
-	<%= f.label(:text_to_analyze, "Tweets by Username") %>
-	<%=text_area(:text_to_analyze, cols: 20, rows: 40) %>
+<%= form_for @textsearch do |f| %> 
+	<%= f.label(:text_to_analyze, "Text to Analyze") %>
+	<%= f.text_area(:text_to_analyze, cols: 20, rows: 40) %>
 	<%= submit_tag("Submit") %>
 <% end %>
 <!-- HORIZON - WE KNOW WHAT YOU REALLY THINK -->

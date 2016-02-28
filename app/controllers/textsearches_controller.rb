@@ -37,7 +37,7 @@ class TextsearchesController < ApplicationController
 		end
 		# runs the creation of the multiple entries associated with the search in the text keywords table
 		keyword.each do |n|
-			@textkeyword = Textkeyword.new(textsearch_id: @textsearch.id, personality_type: n[0], value: n[1])
+			@textkeyword = Textkeyword.new(textsearch_id: @textsearch.id, keyword: n[0], value: n[1])
 			@textkeyword.save
 		end
 
