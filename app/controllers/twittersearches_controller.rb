@@ -28,20 +28,28 @@ class TwittersearchesController < ApplicationController
 		sentiment = Indico.sentiment(@twitteranalysis)
 		personality = Indico.personality(@twitteranalysis)
 		political = Indico.political(@twitteranalysis)
+		topical = Indico.text_tags(@twitteranalysis).sort_by {|k,v| v}.reverse.take(10)
+		myersbriggs = Indico.personas(@twitteranalysis).sort_by {|k,v| v}.reverse.take(4)
 		####
 
 		@user = current_user
 		@twittersearch = Twittersearch.new(user_id: @user.id, tweeter: params[:tweeter], sentiment: sentiment.to_f,  personality_agreeableness: personality["agreeableness"], personality_conscientiousness: personality["conscientiousness"], personality_extraversion: personality["extraversion"], personality_openness: personality["oppenness"], political_conservative: political["conservative"], political_green: political["green"], political_liberal: political["liberal"], political_libertarian: political["libertarian"])
 		# runs the creation of the multiple entries associated with the search in the twitter topics table
-		@topical.each do |n|
+		topical.each do |n|
 			n.Twittertopic.new(twittersearch_id: @twittersearch.id, topic: n[0], value: n[1].to_f)
 			n.Twittertopic.save
 		end
 		# runs the creation of the multiple entries associated with the search in the twitter myers-briggs table
-		@twittermyersbriggs.each do |n|
+		twittermyersbriggs.each do |n|
 			n.TwitterMb.new(twittersearch_id: @twittersearch.id, personality_type: n[0], value: n[1].to_f)
 			n.TwitterMb.save
 		end
 
 	end
+
+	private
+	def twittersearch_params
+		params.require(:twittersearch).permit(:user_id, :tweeter, :retweet, :sentiment, :personality_agreeableness, :personality_conscientiousness, :personality_extraversion, :personality_openness, :political_conservative, :political_green, :political_liberal, :political_libertarian)
+	end
+
 end

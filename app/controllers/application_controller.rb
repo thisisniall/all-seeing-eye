@@ -8,6 +8,8 @@ class ApplicationController < ActionController::Base
 
 
  # global methods for use throughout the application
+ 	helper_method :current_user
+
 	def current_user
 		# checks to see if session exists, if so, loads user
 		# and saves into @user instance variable

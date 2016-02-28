@@ -13,13 +13,14 @@
 <% end %>
 
 <!-- SWITCH TO FORM-FOR -->
-<%= form_for @twittersearch %> 
-	<%= label(:tweeter, "Tweets by Username") %>
-	<%= text_field(:tweeter)%>
-	<%=label(:enableRT, "Check to include retweets in search results?") %>
-	<%=check_box(:enableRT) %>
+<h2> Back-end-connected Twitter </h2>
+<%= form_for @twittersearch do |f| %> 
+	<%= f.label(:tweeter, "Tweets by Username") %>
+	<%= f.text_field(:tweeter)%>
+	<%=f.label(:retweet, "Check to include retweets in search results?") %>
+	<%=f.check_box(:retweet) %>
+	<%= submit_tag("Submit") %>
 <% end %>
-
 <!-- HORIZON - WE KNOW WHAT YOU THINK -->
 
 <% if @tweets %>
@@ -87,3 +88,4 @@
 	
 
 <% end %>
+	

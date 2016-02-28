@@ -1,7 +1,11 @@
 class HomeController < ApplicationController
   def index
-    @user = current_user
-    @twittersearch = Twittersearch.new
+    if current_user
+      @user = current_user
+      @twittersearch = Twittersearch.new
+    else
+      redirect_to log_in_path
+    end
   end
 
   #additional whosaidit parameter for search by user
