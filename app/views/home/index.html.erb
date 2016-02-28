@@ -12,7 +12,7 @@
 	<%= submit_tag("Submit") %>
 <% end %>
 
-<!-- SWITCH TO FORM-FOR -->
+<!-- BACK-END CONNECTION -->
 <h2> Back-end-connected Twitter </h2>
 <%= form_for @twittersearch do |f| %> 
 	<%= f.label(:tweeter, "Tweets by Username") %>
@@ -21,7 +21,7 @@
 	<%=f.check_box(:retweet) %>
 	<%= submit_tag("Submit") %>
 <% end %>
-<!-- HORIZON - WE KNOW WHAT YOU THINK -->
+<!-- HORIZON - WE KNOW WHAT YOU REALLY THINK -->
 
 <% if @tweets %>
 	<ul>
@@ -60,6 +60,15 @@
 	<%=text_area(:text_to_analyze, cols: 20, rows: 40) %>
 	<%= submit_tag("Submit") %>
 <% end %>
+
+<!-- BACK-END CONNECTION -->
+<h2> Back-end-connected Text </h2>
+<%= form_for @textanalysis do |f| %> 
+	<%= f.label(:text_to_analyze, "Tweets by Username") %>
+	<%=text_area(:text_to_analyze, cols: 20, rows: 40) %>
+	<%= submit_tag("Submit") %>
+<% end %>
+<!-- HORIZON - WE KNOW WHAT YOU REALLY THINK -->
 
 <% if @analyzetext %>
 
