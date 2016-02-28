@@ -33,18 +33,20 @@ class TwittersearchesController < ApplicationController
 		####
 
 		@user = current_user
-		@twittersearch = Twittersearch.new(user_id: @user.id, tweeter: params[:tweeter], sentiment: sentiment.to_f,  personality_agreeableness: personality["agreeableness"], personality_conscientiousness: personality["conscientiousness"], personality_extraversion: personality["extraversion"], personality_openness: personality["oppenness"], political_conservative: political["conservative"], political_green: political["green"], political_liberal: political["liberal"], political_libertarian: political["libertarian"])
+		@twittersearch = Twittersearch.new(user_id: @user.id, tweeter: params[:tweeter], sentiment: sentiment.to_f,  personality_agreeableness: personality["agreeableness"], personality_conscientiousness: personality["conscientiousness"], personality_extraversion: personality["extraversion"], personality_openness: personality["openness"], political_conservative: political["Conservative"], political_green: political["Green"], political_liberal: political["Liberal"], political_libertarian: political["Libertarian"])
+		@twittersearch.save
 		# runs the creation of the multiple entries associated with the search in the twitter topics table
 		topical.each do |n|
-			n.Twittertopic.new(twittersearch_id: @twittersearch.id, topic: n[0], value: n[1].to_f)
-			n.Twittertopic.save
+			@twittertopic = Twittertopic.new(twittersearch_id: @twittersearch.id, topic: n[0], value: n[1].to_f)
+			@twittertopic.save
 		end
 		# runs the creation of the multiple entries associated with the search in the twitter myers-briggs table
-		twittermyersbriggs.each do |n|
-			n.TwitterMb.new(twittersearch_id: @twittersearch.id, personality_type: n[0], value: n[1].to_f)
-			n.TwitterMb.save
+		myersbriggs.each do |n|
+			@twittermb = TwitterMb.new(twittersearch_id: @twittersearch.id, personality_type: n[0], value: n[1])
+			@twittermb.save
 		end
 
+		redirect_to root_path
 	end
 
 	private
