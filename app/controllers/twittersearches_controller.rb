@@ -33,7 +33,7 @@ class TwittersearchesController < ApplicationController
 		####
 
 		@user = current_user
-		@twittersearch = Twittersearch.new(user_id: @user.id, tweeter: params[:tweeter].to_s, sentiment: sentiment.to_f,  personality_agreeableness: personality["agreeableness"], personality_conscientiousness: personality["conscientiousness"], personality_extraversion: personality["extraversion"], personality_openness: personality["openness"], political_conservative: political["Conservative"], political_green: political["Green"], political_liberal: political["Liberal"], political_libertarian: political["Libertarian"])
+		@twittersearch = Twittersearch.new(user_id: @user.id, tweeter: params[:twittersearch][:tweeter], sentiment: sentiment.to_f,  personality_agreeableness: personality["agreeableness"], personality_conscientiousness: personality["conscientiousness"], personality_extraversion: personality["extraversion"], personality_openness: personality["openness"], political_conservative: political["Conservative"], political_green: political["Green"], political_liberal: political["Liberal"], political_libertarian: political["Libertarian"])
 		@twittersearch.save
 		# runs the creation of the multiple entries associated with the search in the twitter topics table
 		topical.each do |n|

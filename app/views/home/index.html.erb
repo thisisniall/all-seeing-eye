@@ -18,30 +18,29 @@
 	<h3> Your Last Twitter Search: </h3>
 	<%= "Tweeter: #{@yourlasttwittersearch.tweeter}" %>
 	<br>
-	<%= "Sentiment: #{@yourlasttwittersearch.sentiment.round(3)*100.floor} % positive" %>
+	<!--the .round() function of ruby ended up with some weird numbers, so I used a hacky method involving multiplication, .floor and division instead to get the results formatted in a more consistent manner -->
+	<%= "Sentiment: #{(@yourlasttwittersearch.sentiment*1000).floor/10.0} % positive" %>
 	<br>
 	<ul> Personality:
-		<li><%= "Agreeableness: #{@yourlasttwittersearch.personality_agreeableness.round(3)*100}%" %> </li>
-		<li><%= "Extraversion: #{@yourlasttwittersearch.personality_extraversion.round(3)*100}%" %> </li>
-		<li><%= "Conscientiousness: #{@yourlasttwittersearch.personality_conscientiousness.round(3)*100}%" %> </li>
-		<li><%= "Openness: #{@yourlasttwittersearch.personality_openness.round(3)*100}%" %> </li>
+		<li><%= "Agreeableness: #{(@yourlasttwittersearch.personality_agreeableness*1000).floor/10.0}%" %> </li>
+		<li><%= "Extraversion: #{(@yourlasttwittersearch.personality_extraversion*1000).floor/10.0}%" %> </li>
+		<li><%= "Conscientiousness: #{(@yourlasttwittersearch.personality_conscientiousness*1000).floor/10.0}%" %> </li>
+		<li><%= "Openness: #{(@yourlasttwittersearch.personality_openness*1000).floor/10.0}%" %> </li>
 	 </ul>
-	<br>
 	<ul> Political:
-		<li><%= "Conservative: #{@yourlasttwittersearch.political_conservative.round(3)*100}%" %> </li>
-		<li><%= "Green: #{@yourlasttwittersearch.political_green.round(3)*100}%" %> </li>
-		<li><%= "Liberal: #{@yourlasttwittersearch.political_liberal.round(3)*100}%" %> </li>
-		<li><%= "Libertarian: #{@yourlasttwittersearch.political_libertarian.round(3)*100}%" %> </li>
+		<li><%= "Conservative: #{(@yourlasttwittersearch.political_conservative*1000).floor/10.0}%" %> </li>
+		<li><%= "Green: #{(@yourlasttwittersearch.political_green*1000).floor/10.0}%" %> </li>
+		<li><%= "Liberal: #{(@yourlasttwittersearch.political_liberal*1000).floor/10.0}%" %> </li>
+		<li><%= "Libertarian: #{(@yourlasttwittersearch.political_libertarian*1000).floor/10.0}%" %> </li>
 	</ul>
-	<br>
 	<ul>Myers-Briggs Analysis (Top 4/16):
 		<% @yourlasttwittersearch.twitter_mbs.all.each do |n| %>
-		<li><%= "#{n.personality_type.capitalize}: #{n.value.round(3)*100}%" %> </li>
+		<li><%= "#{n.personality_type.capitalize}: #{(n.value*1000).floor/10.0}%" %> </li>
 		<% end %>
 	</ul>
 	<ul>Most Relevant Topics (from a list of 111:)
 		<% @yourlasttwittersearch.twittertopics.all.each do |n| %>
-		<li><%= "#{n.topic.capitalize}: #{n.value.round(3)*100}%" %> </li>
+		<li><%= "#{n.topic.capitalize}: #{(n.value*1000).floor/10.0}%" %> </li>
 		<% end %>
 	</ul>
 
@@ -60,31 +59,36 @@
 <% @yourlasttextsearch = @user.textsearches.last %>
 <% if @yourlasttextsearch %>
 
+	<!--the .round() function of ruby ended up with some weird numbers, so I used a hacky method involving multiplication, .floor and division instead to get the results formatted in a more consistent manner -->
+
 	<h3> Your Last Text Search: </h3>
-	<%= "Sentiment: #{@yourlasttextsearch.sentiment.round(3)*100.floor} % positive" %>
+	<%= "Sentiment: #{(@yourlasttextsearch.sentiment*1000).floor/10.0} % positive" %>
 	<br>
 	<ul> Personality:
-		<li><%= "Agreeableness: #{@yourlasttextsearch.personality_agreeableness.round(3)*100}%" %> </li>
-		<li><%= "Extraversion: #{@yourlasttextsearch.personality_extraversion.round(3)*100}%" %> </li>
-		<li><%= "Conscientiousness: #{@yourlasttextsearch.personality_conscientiousness.round(3)*100}%" %> </li>
-		<li><%= "Openness: #{@yourlasttextsearch.personality_openness.round(3)*100}%" %> </li>
+		<li><%= "Agreeableness: #{(@yourlasttextsearch.personality_agreeableness*1000).floor/10.0}%" %> </li>
+		<li><%= "Extraversion: #{(@yourlasttextsearch.personality_extraversion*1000).floor/10.0}%" %> </li>
+		<li><%= "Conscientiousness: #{(@yourlasttextsearch.personality_conscientiousness*1000).floor/10.0}%" %> </li>
+		<li><%= "Openness: #{(@yourlasttextsearch.personality_openness*1000).floor/10.0}%" %> </li>
 	 </ul>
-	<br>
 	<ul> Political:
-		<li><%= "Conservative: #{@yourlasttextsearch.political_conservative.round(3)*100}%" %> </li>
-		<li><%= "Green: #{@yourlasttextsearch.political_green.round(3)*100}%" %> </li>
-		<li><%= "Liberal: #{@yourlasttextsearch.political_liberal.round(3)*100}%" %> </li>
-		<li><%= "Libertarian: #{@yourlasttextsearch.political_libertarian.round(3)*100}%" %> </li>
+		<li><%= "Conservative: #{(@yourlasttextsearch.political_conservative*1000).floor/10.0}%" %> </li>
+		<li><%= "Green: #{(@yourlasttextsearch.political_green*1000).floor/10.0}%" %> </li>
+		<li><%= "Liberal: #{(@yourlasttextsearch.political_liberal*1000).floor/10.0}%" %> </li>
+		<li><%= "Libertarian: #{(@yourlasttextsearch.political_libertarian*1000).floor/10.0}%" %> </li>
 	</ul>
-	<br>
 	<ul>Myers-Briggs Analysis (Top 4/16):
 		<% @yourlasttextsearch.text_mbs.all.each do |n| %>
-		<li><%= "#{n.personality_type.capitalize}: #{n.value.round(3)*100}%" %> </li>
+		<li><%= "#{n.personality_type.capitalize}: #{(n.value*1000).floor/10.0}%" %> </li>
 		<% end %>
 	</ul>
 	<ul>Most Relevant Topics (from a list of 111:)
 		<% @yourlasttextsearch.texttopics.all.each do |n| %>
-		<li><%= "#{n.topic.capitalize}: #{n.value.round(3)*100}%" %> </li>
+		<li><%= "#{n.topic.capitalize}: #{(n.value*1000).floor/10.0}%" %> </li>
+		<% end %>
+	</ul>
+		<ul>Keywords!
+		<% @yourlasttextsearch.textkeywords.all.each do |n| %>
+		<li><%= "#{n.keyword.capitalize}: #{(n.value*1000).floor/10.0}%" %> </li>
 		<% end %>
 	</ul>
 <% end %>	
