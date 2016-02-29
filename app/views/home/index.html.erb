@@ -2,7 +2,6 @@
 <p>Find me in app/views/home/index.html.erb</p>
 
 <h2> Twitter Analysis: </h2>
-
 <%= form_tag("/search", method: "get") do %>
 	<%=label_tag(:whosaidit, "Tweets By Username:") %>
 	<%=text_field_tag(:whosaidit) %>
@@ -22,6 +21,30 @@
 	<%= submit_tag("Submit") %>
 <% end %>
 <!-- HORIZON - WE KNOW WHAT YOU REALLY THINK -->
+
+<% @yourlasttwittersearch = @user.twittersearches.last %>
+<% if @yourlasttwittersearch %>
+
+	<h3> Your Last Search: </h3>
+	<%= "Tweeter: #{@yourlasttwittersearch.tweeter}" %>
+	<br>
+	<%= "Sentiment: #{@yourlasttwittersearch.sentiment*100} % positive" %>
+	<br>
+	<ul> Personality:
+		<li><%= "Agreeableness: #{@yourlasttwittersearch.personality_agreeableness*100}%" %> </li>
+		<li><%= "Extraversion: #{@yourlasttwittersearch.personality_extraversion*100}%" %> </li>
+		<li><%= "Conscientiousness: #{@yourlasttwittersearch.personality_conscientiousness*100}%" %> </li>
+		<li><%= "Openness: #{@yourlasttwittersearch.personality_openness*100}%" %> </li>
+	 </ul>
+	<br>
+	<ul> Political:
+		<li><%= "Conservative:: #{@yourlasttwittersearch.political_conservative*100}%" %> </li>
+		<li><%= "Green: #{@yourlasttwittersearch.political_green*100}%" %> </li>
+		<li><%= "Liberal: #{@yourlasttwittersearch.political_liberal*100}%" %> </li>
+		<li><%= "Libertarian: #{@yourlasttwittersearch.political_libertarian*100}%" %> </li>
+	</ul>
+
+<% end %>	
 
 <% if @tweets %>
 	<ul>
@@ -63,12 +86,13 @@
 
 <!-- BACK-END CONNECTION -->
 <h2> Back-end-connected Text </h2>
-<%= form_for @textsearch do |f| %> 
-	<%= f.label(:text_to_analyze, "Text to Analyze") %>
-	<%= f.text_area(:text_to_analyze, cols: 20, rows: 40) %>
+<%= form_tag "/textsearches", method: "post" do %> 
+	<%= label_tag(:text_to_analyze, "Text to Analyze") %>
+	<%= text_area :text_to_analyze, cols: 20, rows: 40 %>
 	<%= submit_tag("Submit") %>
 <% end %>
-<!-- HORIZON - WE KNOW WHAT YOU REALLY THINK -->
+
+<!-- (OTHER V) HORIZON - WE KNOW WHAT YOU REALLY THINK -->
 
 <% if @analyzetext %>
 

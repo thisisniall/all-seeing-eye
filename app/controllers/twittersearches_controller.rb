@@ -18,12 +18,13 @@ class TwittersearchesController < ApplicationController
 	      @RToption = ""
 	    end
 
+	    # cycles through text of various tweets, compiles them into a single string for analysis
 		@tweets = $twitter.search("from:#{@whosaidit}" + " filter:images "+"#{@RToption}").take(30)
 		@tweets.each do |tweet|
 			@twitteranalysis = @twitteranalysis + tweet.text
 		end
 
-		#### calls to indico APIs
+		#### calls to indico APIs (future move to library?)
 		sentiment = Indico.sentiment(@twitteranalysis)
 		personality = Indico.personality(@twitteranalysis)
 		political = Indico.political(@twitteranalysis)

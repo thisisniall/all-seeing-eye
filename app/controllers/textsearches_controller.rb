@@ -10,10 +10,10 @@ class TextsearchesController < ApplicationController
 
 	def create
 		#define @textanalysis - "params" probably won't work here
-		@textanalysis = params[:text_to_analyze]
+		@textanalysis = params[:text_to_analyze].to_s
 		@characters = params[:text_to_analyze].length
 
-		#### calls to indico APIs
+		#### calls to indico APIs (future move to library?)
 		sentiment = Indico.sentiment(@textanalysis)
 		personality = Indico.personality(@textanalysis)
 		political = Indico.political(@textanalysis)
@@ -46,6 +46,6 @@ class TextsearchesController < ApplicationController
 
 	private
 	def textsearch_params
-		params.require(:textsearch).permit(:user_id, :character_length :sentiment, :personality_agreeableness, :personality_conscientiousness, :personality_extraversion, :personality_openness, :political_conservative, :political_green, :political_liberal, :political_libertarian)
+		params.require(:textsearch).permit(:user_id, :character_length, :sentiment, :personality_agreeableness, :personality_conscientiousness, :personality_extraversion, :personality_openness, :political_conservative, :political_green, :political_liberal, :political_libertarian)
 	end
 end
