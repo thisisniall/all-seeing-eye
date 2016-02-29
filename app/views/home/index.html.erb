@@ -1,16 +1,6 @@
 <h1>Home#index</h1>
 <p>Find me in app/views/home/index.html.erb</p>
 
-<h2> Twitter Analysis: </h2>
-<%= form_tag("/search", method: "get") do %>
-	<%=label_tag(:whosaidit, "Tweets By Username:") %>
-	<%=text_field_tag(:whosaidit) %>
-<!-- 	Note: Including RTs in search results will cause indico to treat something RT'd the same way as if they said it originally. Currently non-functional.  -->
-	<%=label_tag(:enableRT, "Check to include retweets in search results?") %>
-	<%=check_box_tag(:enableRT) %>
-	<%= submit_tag("Submit") %>
-<% end %>
-
 <!-- BACK-END CONNECTION -->
 <h2> Back-end-connected Twitter </h2>
 <%= form_for @twittersearch do |f| %> 
@@ -25,64 +15,37 @@
 <% @yourlasttwittersearch = @user.twittersearches.last %>
 <% if @yourlasttwittersearch %>
 
-	<h3> Your Last Search: </h3>
+	<h3> Your Last Twitter Search: </h3>
 	<%= "Tweeter: #{@yourlasttwittersearch.tweeter}" %>
 	<br>
-	<%= "Sentiment: #{@yourlasttwittersearch.sentiment*100} % positive" %>
+	<%= "Sentiment: #{@yourlasttwittersearch.sentiment.round(3)*100.floor} % positive" %>
 	<br>
 	<ul> Personality:
-		<li><%= "Agreeableness: #{@yourlasttwittersearch.personality_agreeableness*100}%" %> </li>
-		<li><%= "Extraversion: #{@yourlasttwittersearch.personality_extraversion*100}%" %> </li>
-		<li><%= "Conscientiousness: #{@yourlasttwittersearch.personality_conscientiousness*100}%" %> </li>
-		<li><%= "Openness: #{@yourlasttwittersearch.personality_openness*100}%" %> </li>
+		<li><%= "Agreeableness: #{@yourlasttwittersearch.personality_agreeableness.round(3)*100}%" %> </li>
+		<li><%= "Extraversion: #{@yourlasttwittersearch.personality_extraversion.round(3)*100}%" %> </li>
+		<li><%= "Conscientiousness: #{@yourlasttwittersearch.personality_conscientiousness.round(3)*100}%" %> </li>
+		<li><%= "Openness: #{@yourlasttwittersearch.personality_openness.round(3)*100}%" %> </li>
 	 </ul>
 	<br>
 	<ul> Political:
-		<li><%= "Conservative:: #{@yourlasttwittersearch.political_conservative*100}%" %> </li>
-		<li><%= "Green: #{@yourlasttwittersearch.political_green*100}%" %> </li>
-		<li><%= "Liberal: #{@yourlasttwittersearch.political_liberal*100}%" %> </li>
-		<li><%= "Libertarian: #{@yourlasttwittersearch.political_libertarian*100}%" %> </li>
+		<li><%= "Conservative: #{@yourlasttwittersearch.political_conservative.round(3)*100}%" %> </li>
+		<li><%= "Green: #{@yourlasttwittersearch.political_green.round(3)*100}%" %> </li>
+		<li><%= "Liberal: #{@yourlasttwittersearch.political_liberal.round(3)*100}%" %> </li>
+		<li><%= "Libertarian: #{@yourlasttwittersearch.political_libertarian.round(3)*100}%" %> </li>
 	</ul>
-
-<% end %>	
-
-<% if @tweets %>
-	<ul>
-		<% @tweets.each do |tweet| %>
-			<li><%= tweet.text %></li>
-<!-- 			foranalysis will end up as a single text block for Indico to analyze -->
-			<% @twitteranalysis = @twitteranalysis + tweet.text %>
+	<br>
+	<ul>Myers-Briggs Analysis (Top 4/16):
+		<% @yourlasttwittersearch.twitter_mbs.all.each do |n| %>
+		<li><%= "#{n.personality_type.capitalize}: #{n.value.round(3)*100}%" %> </li>
+		<% end %>
+	</ul>
+	<ul>Most Relevant Topics (from a list of 111:)
+		<% @yourlasttwittersearch.twittertopics.all.each do |n| %>
+		<li><%= "#{n.topic.capitalize}: #{n.value.round(3)*100}%" %> </li>
 		<% end %>
 	</ul>
 
-	<h2>So, let's get some information about that person you just searched for!</h2>
-
-	<h3> Sentiment Analysis: </h3>
-	<%= Indico.sentiment(@twitteranalysis) %>
-
-	<h3> Personality Analysis: </h3>
-	<%= Indico.personality(@twitteranalysis) %>
-
-	<h3> Political Analysis: </h3>
-	<%= Indico.political(@twitteranalysis) %>
-
-	<h3> Topical Analysis, Top 10, Sorted Hash: </h3>
-	<!-- takes the 10 most relevant topics to the tweeter -->
-	<% @topical = Indico.text_tags(@twitteranalysis).sort_by {|k,v| v}.reverse %>
-	<%= @topical = @topical.take(10) %>
-
-	<h3>Myers-Briggs Indicator, Top 4, By Likelihood: </h3>
-	<% @twittermyersbriggs = Indico.personas(@twitteranalysis).sort_by {|k,v| v}.reverse  %>
-	<%= @twittermyersbriggs.take(4)%>
-<% end %>
-
-<h2> Textual Analysis: </h2>
-
-<%= form_tag("/analyze", method: "get") do %>
-	<%=label_tag(:text_to_analyze, "Analyze this block of text") %>
-	<%=text_area(:text_to_analyze, cols: 20, rows: 40) %>
-	<%= submit_tag("Submit") %>
-<% end %>
+<% end %>	
 
 <!-- BACK-END CONNECTION -->
 <h2> Back-end-connected Text </h2>
@@ -94,31 +57,36 @@
 
 <!-- (OTHER V) HORIZON - WE KNOW WHAT YOU REALLY THINK -->
 
-<% if @analyzetext %>
+<% @yourlasttextsearch = @user.textsearches.last %>
+<% if @yourlasttextsearch %>
 
-	<h3> Sentiment Analysis: </h3>
-	<%= Indico.sentiment(@analyzetext) %>
+	<h3> Your Last Text Search: </h3>
+	<%= "Sentiment: #{@yourlasttextsearch.sentiment.round(3)*100.floor} % positive" %>
+	<br>
+	<ul> Personality:
+		<li><%= "Agreeableness: #{@yourlasttextsearch.personality_agreeableness.round(3)*100}%" %> </li>
+		<li><%= "Extraversion: #{@yourlasttextsearch.personality_extraversion.round(3)*100}%" %> </li>
+		<li><%= "Conscientiousness: #{@yourlasttextsearch.personality_conscientiousness.round(3)*100}%" %> </li>
+		<li><%= "Openness: #{@yourlasttextsearch.personality_openness.round(3)*100}%" %> </li>
+	 </ul>
+	<br>
+	<ul> Political:
+		<li><%= "Conservative: #{@yourlasttextsearch.political_conservative.round(3)*100}%" %> </li>
+		<li><%= "Green: #{@yourlasttextsearch.political_green.round(3)*100}%" %> </li>
+		<li><%= "Liberal: #{@yourlasttextsearch.political_liberal.round(3)*100}%" %> </li>
+		<li><%= "Libertarian: #{@yourlasttextsearch.political_libertarian.round(3)*100}%" %> </li>
+	</ul>
+	<br>
+	<ul>Myers-Briggs Analysis (Top 4/16):
+		<% @yourlasttextsearch.text_mbs.all.each do |n| %>
+		<li><%= "#{n.personality_type.capitalize}: #{n.value.round(3)*100}%" %> </li>
+		<% end %>
+	</ul>
+	<ul>Most Relevant Topics (from a list of 111:)
+		<% @yourlasttextsearch.texttopics.all.each do |n| %>
+		<li><%= "#{n.topic.capitalize}: #{n.value.round(3)*100}%" %> </li>
+		<% end %>
+	</ul>
+<% end %>	
 
-	<h3> Personality Analysis: </h3>
-	<%= Indico.personality(@analyzetext) %>
-
-	<h3> Political Analysis: </h3>
-	<%= Indico.political(@analyzetext) %>
-
-	<h3> Topical Analysis, Top 10, Sorted Hash: </h3>
-	<!-- takes the 10 most relevant topics to the tweeter -->
-	<% @topical = Indico.text_tags(@analyzetext).sort_by {|k,v| v}.reverse %>
-	<%= @topical.take(10) %>
-
-	<h3>Myers-Briggs Indicator, Top 4, By Likelihood: </h3>
-	<% @twittermyersbriggs = Indico.personas(@analyzetext).sort_by {|k,v| v}.reverse  %>
-	<%= @twittermyersbriggs.take(4)%>
-
-	<h3> Top 10 text keywords: </h3>
-	<!-- uses some algorithm to find 10 keywords -->
-	<%  @textkeywords = Indico.keywords(@analyzetext, {version: "2"}) %>
-	<%= @textkeywords.sort_by {|k,v| v}.reverse.take(10) %>
-	
-
-<% end %>
 	

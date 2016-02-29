@@ -1,0 +1,76 @@
+<h2> Twitter Analysis: </h2>
+<%= form_tag("/search", method: "get") do %>
+	<%=label_tag(:whosaidit, "Tweets By Username:") %>
+	<%=text_field_tag(:whosaidit) %>
+<!-- 	Note: Including RTs in search results will cause indico to treat something RT'd the same way as if they said it originally. Currently non-functional.  -->
+	<%=label_tag(:enableRT, "Check to include retweets in search results?") %>
+	<%=check_box_tag(:enableRT) %>
+	<%= submit_tag("Submit") %>
+<% end %>
+
+<% if @tweets %>
+	<ul>
+		<% @tweets.each do |tweet| %>
+			<li><%= tweet.text %></li>
+<!-- 			foranalysis will end up as a single text block for Indico to analyze -->
+			<% @twitteranalysis = @twitteranalysis + tweet.text %>
+		<% end %>
+	</ul>
+
+	<h2>So, let's get some information about that person you just searched for!</h2>
+
+	<h3> Sentiment Analysis: </h3>
+	<%= Indico.sentiment(@twitteranalysis) %>
+
+	<h3> Personality Analysis: </h3>
+	<%= Indico.personality(@twitteranalysis) %>
+
+	<h3> Political Analysis: </h3>
+	<%= Indico.political(@twitteranalysis) %>
+
+	<h3> Topical Analysis, Top 10, Sorted Hash: </h3>
+	<!-- takes the 10 most relevant topics to the tweeter -->
+	<% @topical = Indico.text_tags(@twitteranalysis).sort_by {|k,v| v}.reverse %>
+	<%= @topical = @topical.take(10) %>
+
+	<h3>Myers-Briggs Indicator, Top 4, By Likelihood: </h3>
+	<% @twittermyersbriggs = Indico.personas(@twitteranalysis).sort_by {|k,v| v}.reverse  %>
+	<%= @twittermyersbriggs.take(4)%>
+<% end %>
+
+<h2> Textual Analysis: </h2>
+
+<%= form_tag("/analyze", method: "get") do %>
+	<%=label_tag(:text_to_analyze, "Analyze this block of text") %>
+	<%=text_area(:text_to_analyze, cols: 20, rows: 40) %>
+	<%= submit_tag("Submit") %>
+<% end %>
+
+
+<% if @analyzetext %>
+
+	<h3> Sentiment Analysis: </h3>
+	<%= Indico.sentiment(@analyzetext) %>
+
+	<h3> Personality Analysis: </h3>
+	<%= Indico.personality(@analyzetext) %>
+
+	<h3> Political Analysis: </h3>
+	<%= Indico.political(@analyzetext) %>
+
+	<h3> Topical Analysis, Top 10, Sorted Hash: </h3>
+	<!-- takes the 10 most relevant topics to the tweeter -->
+	<% @topical = Indico.text_tags(@analyzetext).sort_by {|k,v| v}.reverse %>
+	<%= @topical.take(10) %>
+
+	<h3>Myers-Briggs Indicator, Top 4, By Likelihood: </h3>
+	<% @textmyersbriggs = Indico.personas(@analyzetext).sort_by {|k,v| v}.reverse  %>
+	<%= @textrmyersbriggs.take(4)%>
+
+	<h3> Top 10 text keywords: </h3>
+	<!-- uses some algorithm to find 10 keywords -->
+	<%  @textkeywords = Indico.keywords(@analyzetext, {version: "2"}) %>
+	<%= @textkeywords.sort_by {|k,v| v}.reverse.take(10) %>
+	
+
+<% end %>
