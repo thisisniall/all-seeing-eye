@@ -2,7 +2,77 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// red-white-blue
+$dark_blue: #0b3536;
+$light_blue: #0098d8;
+$red_orange: #f54123;
+$off_white: #e5e7de;
+
+// light-light-blue-dark
+$light_gray: #e1e0dd;
+$not_quite_white: #f1f2f0;
+$not_quite_black: #35342f;
+$dat_blue: #37bbe4;
+
+
 * {
-font-family: "Blender","Helvetica Neue",Helvetica,Arial,sans-serif;
+font-family: "Karla","Helvetica Neue",Helvetica,Arial,sans-serif;
+background-color: $light_gray;
+color: $not_quite_black;
 }
 
+#navbar {
+	background-color: $not_quite_black;
+	position: fixed;
+	width: 100%;
+	text-align: center;
+	margin: 0 auto;
+	top: 0;
+	margin-bottom: 15px;
+	padding-bottom: 2px;
+}
+
+#navbar ul {
+	background-color: $not_quite_black;
+	display: inline;
+	margin: 0 auto;
+	padding-top: 10px;
+}
+
+#navbar ul:after {
+	content: " "; clear: both; display: block;
+}
+
+#navbar ul li {
+	background-color: $not_quite_black;
+	display: inline;
+	padding-top: 10px;
+	margin-right: 9%;
+	margin-left: 1%;
+}
+
+#navbar a {
+	background-color: $not_quite_black;
+	text-decoration: none;
+	font-size: 18px;
+	font-weight: bold;
+	color: $not_quite_white;
+	padding: 5px 5px;
+	border-radius: 5px;
+}
+
+#navbar a:hover {
+	background-color: $not_quite_black;
+	color: $dat_blue;
+}
+
+#right-sidebar {
+	position: fixed;
+		right: 0;
+		top: 100px;
+	max-width: 300px;
+	margin-top: 100px;
+	margin-left: 20px;
+	background-color:rgba(0,0,0,0.2);
+	border-radius: 5px;
+}

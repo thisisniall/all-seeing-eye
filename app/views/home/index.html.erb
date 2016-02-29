@@ -16,7 +16,7 @@
 <% if @yourlasttwittersearch %>
 
 	<h3> Your Last Twitter Search: </h3>
-	<%= "Tweeter: #{@yourlasttwittersearch.tweeter}" %>
+	<%= "Tweeter: @#{@yourlasttwittersearch.tweeter}" %>
 	<br>
 	<!--the .round() function of ruby ended up with some weird numbers, so I used a hacky method involving multiplication, .floor and division instead to get the results formatted in a more consistent manner -->
 	<%= "Sentiment: #{(@yourlasttwittersearch.sentiment*1000).floor/10.0} % positive" %>

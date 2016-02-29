@@ -5,8 +5,17 @@
   <%= stylesheet_link_tag    'application', media: 'all'%>
   <%= javascript_include_tag 'application'%>
   <%= csrf_meta_tags %>
+  <link href='https://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
 </head>
 <body>
+	<nav id="navbar">
+		<ul>
+			<li><a href="about.html">about</a></li>					
+			<li><a href="index.html">home</a></li>
+			<li><a href="index.html">projects</a> </li>
+ 			<li><a href="clickbait.html">clickbait</a></li>
+			</ul>
+	</nav>
 
 <%= yield %>
 
