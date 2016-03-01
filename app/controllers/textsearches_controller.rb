@@ -11,7 +11,7 @@ class TextsearchesController < ApplicationController
 	def create
 		#define @textanalysis - "params" probably won't work here
 		@textanalysis = params[:text_to_analyze].to_s
-		@characters = params[:text_to_analyze].length
+		@title = params[:title]
 
 		#### calls to indico APIs (future move to library?)
 		sentiment = Indico.sentiment(@textanalysis)
@@ -23,7 +23,7 @@ class TextsearchesController < ApplicationController
 		####
 
 		@user = current_user
-		@textsearch = Textsearch.new(user_id: @user.id, character_length: @characters, sentiment: sentiment.to_f,  personality_agreeableness: personality["agreeableness"], personality_conscientiousness: personality["conscientiousness"], personality_extraversion: personality["extraversion"], personality_openness: personality["openness"], political_conservative: political["Conservative"], political_green: political["Green"], political_liberal: political["Liberal"], political_libertarian: political["Libertarian"])
+		@textsearch = Textsearch.new(user_id: @user.id, title: @title, sentiment: sentiment.to_f,  personality_agreeableness: personality["agreeableness"], personality_conscientiousness: personality["conscientiousness"], personality_extraversion: personality["extraversion"], personality_openness: personality["openness"], political_conservative: political["Conservative"], political_green: political["Green"], political_liberal: political["Liberal"], political_libertarian: political["Libertarian"])
 		@textsearch.save
 		# runs the creation of the multiple entries associated with the search in the text topics table
 		topical.each do |n|

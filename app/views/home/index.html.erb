@@ -61,7 +61,9 @@
 <!-- BACK-END CONNECTION -->
 <h2> Back-end-connected Text </h2>
 <%= form_tag "/textsearches", method: "post" do %> 
-	<%= label_tag(:text_to_analyze, "Text to Analyze") %>
+	<%= label_tag(:title, "Title:") %>
+	<%= text_field :title, cols: 20, rows: 40 %>
+	<%= label_tag(:text_to_analyze, "Text to Analyze:") %>
 	<%= text_area :text_to_analyze, cols: 20, rows: 40 %>
 	<%= submit_tag("Submit") %>
 <% end %>

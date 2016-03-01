@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160226233239) do
+ActiveRecord::Schema.define(version: 20160301155625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,7 +38,6 @@ ActiveRecord::Schema.define(version: 20160226233239) do
 
   create_table "textsearches", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "character_length"
     t.float    "sentiment"
     t.float    "personality_agreeableness"
     t.float    "personality_conscientiousness"
@@ -50,6 +49,7 @@ ActiveRecord::Schema.define(version: 20160226233239) do
     t.float    "political_libertarian"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
+    t.string   "title"
   end
 
   add_index "textsearches", ["user_id"], name: "index_textsearches_on_user_id", using: :btree
