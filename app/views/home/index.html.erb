@@ -15,35 +15,45 @@
 <% @yourlasttwittersearch = @user.twittersearches.last %>
 <% if @yourlasttwittersearch %>
 
-	<h3> Your Last Twitter Search: </h3>
-	<%= "Tweeter: @#{@yourlasttwittersearch.tweeter}" %>
-	<br>
-	<!--the .round() function of ruby ended up with some weird numbers, so I used a hacky method involving multiplication, .floor and division instead to get the results formatted in a more consistent manner -->
-	<%= "Sentiment: #{(@yourlasttwittersearch.sentiment*1000).floor/10.0} % positive" %>
-	<br>
-	<ul> Personality:
-		<li><%= "Agreeableness: #{(@yourlasttwittersearch.personality_agreeableness*1000).floor/10.0}%" %> </li>
-		<li><%= "Extraversion: #{(@yourlasttwittersearch.personality_extraversion*1000).floor/10.0}%" %> </li>
-		<li><%= "Conscientiousness: #{(@yourlasttwittersearch.personality_conscientiousness*1000).floor/10.0}%" %> </li>
-		<li><%= "Openness: #{(@yourlasttwittersearch.personality_openness*1000).floor/10.0}%" %> </li>
-	 </ul>
-	<ul> Political:
-		<li><%= "Conservative: #{(@yourlasttwittersearch.political_conservative*1000).floor/10.0}%" %> </li>
-		<li><%= "Green: #{(@yourlasttwittersearch.political_green*1000).floor/10.0}%" %> </li>
-		<li><%= "Liberal: #{(@yourlasttwittersearch.political_liberal*1000).floor/10.0}%" %> </li>
-		<li><%= "Libertarian: #{(@yourlasttwittersearch.political_libertarian*1000).floor/10.0}%" %> </li>
-	</ul>
-	<ul>Myers-Briggs Analysis (Top 4/16):
-		<% @yourlasttwittersearch.twitter_mbs.all.each do |n| %>
-		<li><%= "#{n.personality_type.capitalize}: #{(n.value*1000).floor/10.0}%" %> </li>
-		<% end %>
-	</ul>
-	<ul>Most Relevant Topics (from a list of 111:)
-		<% @yourlasttwittersearch.twittertopics.all.each do |n| %>
-		<li><%= "#{n.topic.capitalize}: #{(n.value*1000).floor/10.0}%" %> </li>
-		<% end %>
-	</ul>
-
+	
+	<div>
+		<h3> Your Last Twitter Search: </h3>
+		<%= "Tweeter: @#{@yourlasttwittersearch.tweeter}" %>
+		<br>
+		<!--the .round() function of ruby ended up with some weird numbers, so I used a hacky method involving multiplication, .floor and division instead to get the results formatted in a more consistent manner -->
+		<%= "Sentiment: #{(@yourlasttwittersearch.sentiment*1000).floor/10.0} % positive" %>
+	</div>
+	<div class='personality'>
+		<ul> Personality:
+			<li><%= "Agreeableness: #{(@yourlasttwittersearch.personality_agreeableness*1000).floor/10.0}%" %> </li>
+			<li><%= "Extraversion: #{(@yourlasttwittersearch.personality_extraversion*1000).floor/10.0}%" %> </li>
+			<li><%= "Conscientiousness: #{(@yourlasttwittersearch.personality_conscientiousness*1000).floor/10.0}%" %> </li>
+			<li><%= "Openness: #{(@yourlasttwittersearch.personality_openness*1000).floor/10.0}%" %> </li>
+		 </ul>
+	 </div>
+	 <div class='political'>
+		<ul> Political:
+			<li><%= "Conservative: #{(@yourlasttwittersearch.political_conservative*1000).floor/10.0}%" %> </li>
+			<li><%= "Green: #{(@yourlasttwittersearch.political_green*1000).floor/10.0}%" %> </li>
+			<li><%= "Liberal: #{(@yourlasttwittersearch.political_liberal*1000).floor/10.0}%" %> </li>
+			<li><%= "Libertarian: #{(@yourlasttwittersearch.political_libertarian*1000).floor/10.0}%" %> </li>
+		</ul>
+	</div>
+	<div class='myers-briggs'>
+		<ul>Myers-Briggs Analysis (Top 4/16):
+			<% @yourlasttwittersearch.twitter_mbs.all.each do |n| %>
+			<li><%= "#{n.personality_type.capitalize}: #{(n.value*1000).floor/10.0}%" %> </li>
+			<% end %>
+		</ul>
+	</div>
+	<!-- NOTE - currently using first(5) instead of .all to keep things to a manageable size! -->
+	<div class='topics'>
+		<ul>Most Relevant Topics (from a list of 111:)
+			<% @yourlasttwittersearch.twittertopics.first(5).each do |n| %>
+			<li><%= "#{n.topic.capitalize}: #{(n.value*1000).floor/10.0}%" %> </li>
+			<% end %>
+		</ul>
+	</div>
 <% end %>	
 
 <!-- BACK-END CONNECTION -->
@@ -64,33 +74,44 @@
 	<h3> Your Last Text Search: </h3>
 	<%= "Sentiment: #{(@yourlasttextsearch.sentiment*1000).floor/10.0} % positive" %>
 	<br>
-	<ul> Personality:
-		<li><%= "Agreeableness: #{(@yourlasttextsearch.personality_agreeableness*1000).floor/10.0}%" %> </li>
-		<li><%= "Extraversion: #{(@yourlasttextsearch.personality_extraversion*1000).floor/10.0}%" %> </li>
-		<li><%= "Conscientiousness: #{(@yourlasttextsearch.personality_conscientiousness*1000).floor/10.0}%" %> </li>
-		<li><%= "Openness: #{(@yourlasttextsearch.personality_openness*1000).floor/10.0}%" %> </li>
-	 </ul>
-	<ul> Political:
-		<li><%= "Conservative: #{(@yourlasttextsearch.political_conservative*1000).floor/10.0}%" %> </li>
-		<li><%= "Green: #{(@yourlasttextsearch.political_green*1000).floor/10.0}%" %> </li>
-		<li><%= "Liberal: #{(@yourlasttextsearch.political_liberal*1000).floor/10.0}%" %> </li>
-		<li><%= "Libertarian: #{(@yourlasttextsearch.political_libertarian*1000).floor/10.0}%" %> </li>
-	</ul>
-	<ul>Myers-Briggs Analysis (Top 4/16):
-		<% @yourlasttextsearch.text_mbs.all.each do |n| %>
-		<li><%= "#{n.personality_type.capitalize}: #{(n.value*1000).floor/10.0}%" %> </li>
-		<% end %>
-	</ul>
-	<ul>Most Relevant Topics (from a list of 111:)
-		<% @yourlasttextsearch.texttopics.all.each do |n| %>
-		<li><%= "#{n.topic.capitalize}: #{(n.value*1000).floor/10.0}%" %> </li>
-		<% end %>
-	</ul>
+	<div class = 'personality'>
+		<ul> Personality:
+			<li><%= "Agreeableness: #{(@yourlasttextsearch.personality_agreeableness*1000).floor/10.0}%" %> </li>
+			<li><%= "Extraversion: #{(@yourlasttextsearch.personality_extraversion*1000).floor/10.0}%" %> </li>
+			<li><%= "Conscientiousness: #{(@yourlasttextsearch.personality_conscientiousness*1000).floor/10.0}%" %> </li>
+			<li><%= "Openness: #{(@yourlasttextsearch.personality_openness*1000).floor/10.0}%" %> </li>
+		 </ul>
+	 </div>
+	 <div class = 'political'>
+		<ul> Political:
+			<li><%= "Conservative: #{(@yourlasttextsearch.political_conservative*1000).floor/10.0}%" %> </li>
+			<li><%= "Green: #{(@yourlasttextsearch.political_green*1000).floor/10.0}%" %> </li>
+			<li><%= "Liberal: #{(@yourlasttextsearch.political_liberal*1000).floor/10.0}%" %> </li>
+			<li><%= "Libertarian: #{(@yourlasttextsearch.political_libertarian*1000).floor/10.0}%" %> </li>
+		</ul>
+	</div>
+	<div class = 'myers-briggs'>
+		<ul>Myers-Briggs Analysis (Top 4/16):
+			<% @yourlasttextsearch.text_mbs.all.each do |n| %>
+			<li><%= "#{n.personality_type.capitalize}: #{(n.value*1000).floor/10.0}%" %> </li>
+			<% end %>
+		</ul>
+	</div>
+	<!-- NOTE - currently using first(5) instead of .all to keep things to a manageable size! -->
+	<div class = 'topics'>
+		<ul>Most Relevant Topics (from a list of 111:)
+			<% @yourlasttextsearch.texttopics.first(5).each do |n| %>
+			<li><%= "#{n.topic.capitalize}: #{(n.value*1000).floor/10.0}%" %> </li>
+			<% end %>
+		</ul>
+	</div>
+	<div class = 'keywords'>
 		<ul>Keywords!
-		<% @yourlasttextsearch.textkeywords.all.each do |n| %>
-		<li><%= "#{n.keyword.capitalize}: #{(n.value*1000).floor/10.0}%" %> </li>
-		<% end %>
-	</ul>
+			<% @yourlasttextsearch.textkeywords.all.each do |n| %>
+			<li><%= "#{n.keyword.capitalize}: #{(n.value*1000).floor/10.0}%" %> </li>
+			<% end %>
+		</ul>
+	</div>
 <% end %>	
 
 	

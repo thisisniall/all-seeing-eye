@@ -2,17 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-// red-white-blue
-$dark_blue: #0b3536;
-$light_blue: #0098d8;
-$red_orange: #f54123;
-$off_white: #e5e7de;
-
 // light-light-blue-dark
 $light_gray: #e1e0dd;
 $not_quite_white: #f1f2f0;
 $not_quite_black: #35342f;
-$dat_blue: #37bbe4;
+$light_blue: #37bbe4;
+
+$dark_blue: #0b3536;
 
 
 * {
@@ -32,11 +28,19 @@ color: $not_quite_black;
 	padding-bottom: 2px;
 }
 
+.logo {
+	float: left;
+	margin-left: 5%;
+}
+
 #navbar ul {
 	background-color: $not_quite_black;
-	display: inline;
+	display: inline-block;
 	margin: 0 auto;
 	padding-top: 10px;
+	padding-bottom: 10px;
+	float: right;
+	margin-right: 3%;
 }
 
 #navbar ul:after {
@@ -63,7 +67,7 @@ color: $not_quite_black;
 
 #navbar a:hover {
 	background-color: $not_quite_black;
-	color: $dat_blue;
+	color: $light_blue;
 }
 
 #right-sidebar {
@@ -75,4 +79,24 @@ color: $not_quite_black;
 	margin-left: 20px;
 	background-color:rgba(0,0,0,0.2);
 	border-radius: 5px;
+}
+
+.personality {
+	display: inline-block;
+}
+
+.political {
+	display: inline-block;
+}
+
+.myers-briggs {
+	display: inline-block;
+}
+
+.topics {
+
+}
+
+.keywords {
+
 }
