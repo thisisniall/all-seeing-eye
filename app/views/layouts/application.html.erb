@@ -9,11 +9,14 @@
 </head>
 <body>
 	<nav id="navbar">
-		<a class = "logo" href="about.html">replace with a logo</a>
+		<span id= 'logo'>
+			<a href="about.html"><img src='assets/eyelogo.png'></a> <br>
+		 	<a href="about.html">we know what you <i>really</i> think.</a>
+		 </span>
 		<ul>
-			<li><a href="about.html">about</a></li>					
-			<li><a href="index.html">home</a></li>
-			<li><a href="index.html">projects</a> </li>
+			<li><%= link_to "about", "#", :class => "modal-link link"%></li>					
+			<li><%= link_to "account", user_path(@user), :class => "link" %></li>
+			<li><%= link_to "log out", log_out_path, :class => "link" %></li>
 		</ul>
 	</nav>
 
@@ -23,12 +26,12 @@
 		<% @recenttextsearches = @user.textsearches.last(5) %>
 		<ul>Your Last 5 Twitter Searches:
 			<% @recenttwittersearches.each do |n| %>
-				<li><%= "#{n.tweeter} #{time_ago_in_words(n.created_at)} ago" %></li>
+				<li><%= link_to "@#{n.tweeter}", twittersearches_path(n)%><%=" #{time_ago_in_words(n.created_at)} ago" %></li>
 			<% end %>
 		</ul>
 		<ul> Your Last 5 Text Searches:
 			<% @recenttextsearches.each do |n| %>
-				<li><%=  "#{n.title} #{time_ago_in_words(n.created_at)} ago" %></li>
+				<li><%=  link_to "#{n.title}", textsearches_path(n) %><%=" #{time_ago_in_words(n.created_at)} ago" %></li>
 			<% end %>
 		</ul>
 	</div>

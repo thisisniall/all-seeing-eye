@@ -7,6 +7,10 @@ class TwittersearchesController < ApplicationController
 		@twitter_topic = Twittertopic.new
 	end
 
+	def show
+		@twittersearch = Twittersearch.find(params[:id])
+	end
+
 	def create
 		@whosaidit = twittersearch_params[:tweeter]
 		@twitteranalysis = ""

@@ -1,0 +1,42 @@
+<% if @twittersearch %>
+	<div>
+		<h3> This Twitter Search: </h3>
+		<%= "Tweeter: @#{@twittersearch.tweeter}" %>
+		<br>
+		<!--the .round() function of ruby ended up with some weird numbers, so I used a hacky method involving multiplication, .floor and division instead to get the results formatted in a more consistent manner -->
+		<%= "Sentiment: #{(@twittersearch.sentiment*1000).floor/10.0} % positive" %>
+	</div>
+	<div class='personality'>
+		<ul> Personality:
+			<li><%= "Agreeableness: #{(@twittersearch.personality_agreeableness*1000).floor/10.0}%" %> </li>
+			<li><%= "Extraversion: #{(@twittersearch.personality_extraversion*1000).floor/10.0}%" %> </li>
+			<li><%= "Conscientiousness: #{(@twittersearch.personality_conscientiousness*1000).floor/10.0}%" %> </li>
+			<li><%= "Openness: #{(@twittersearch.personality_openness*1000).floor/10.0}%" %> </li>
+		 </ul>
+	 </div>
+	 <div class='political'>
+		<ul> Political:
+			<li><%= "Conservative: #{(@twittersearch.political_conservative*1000).floor/10.0}%" %> </li>
+			<li><%= "Green: #{(@twittersearch.political_green*1000).floor/10.0}%" %> </li>
+			<li><%= "Liberal: #{(@twittersearch.political_liberal*1000).floor/10.0}%" %> </li>
+			<li><%= "Libertarian: #{(@twittersearch.political_libertarian*1000).floor/10.0}%" %> </li>
+		</ul>
+	</div>
+	<div class='myers-briggs'>
+		<ul>Myers-Briggs Analysis (Top 4/16):
+			<% @twittersearch.twitter_mbs.all.each do |n| %>
+			<li><%= "#{n.personality_type.capitalize}: #{(n.value*1000).floor/10.0}%" %> </li>
+			<% end %>
+		</ul>
+	</div>
+	<!-- NOTE - currently using first(5) instead of .all to keep things to a manageable size! -->
+	<div class = 'container'>
+		<div class='topics'>
+			<ul>Most Relevant Topics (from a list of 111:)
+				<% @twittersearch.twittertopics.first(5).each do |n| %>
+				<li><%= "#{n.topic.capitalize}: #{(n.value*1000).floor/10.0}%" %> </li>
+				<% end %>
+			</ul>
+		</div>
+	</div>	
+<% end %>	

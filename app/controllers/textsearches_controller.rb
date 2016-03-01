@@ -8,6 +8,10 @@ class TextsearchesController < ApplicationController
 		@text_keyword = Textkeyword.new
 	end
 
+	def show
+		@textsearch = Textsearch.find(params[:id])
+	end
+
 	def create
 		#define @textanalysis - "params" probably won't work here
 		@textanalysis = params[:text_to_analyze].to_s
