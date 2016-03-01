@@ -47,12 +47,14 @@
 		</ul>
 	</div>
 	<!-- NOTE - currently using first(5) instead of .all to keep things to a manageable size! -->
-	<div class='topics'>
-		<ul>Most Relevant Topics (from a list of 111:)
-			<% @yourlasttwittersearch.twittertopics.first(5).each do |n| %>
-			<li><%= "#{n.topic.capitalize}: #{(n.value*1000).floor/10.0}%" %> </li>
-			<% end %>
-		</ul>
+	<div class = 'container'>
+		<div class='topics'>
+			<ul>Most Relevant Topics (from a list of 111:)
+				<% @yourlasttwittersearch.twittertopics.first(5).each do |n| %>
+				<li><%= "#{n.topic.capitalize}: #{(n.value*1000).floor/10.0}%" %> </li>
+				<% end %>
+			</ul>
+		</div>
 	</div>
 <% end %>	
 
@@ -74,43 +76,47 @@
 	<h3> Your Last Text Search: </h3>
 	<%= "Sentiment: #{(@yourlasttextsearch.sentiment*1000).floor/10.0} % positive" %>
 	<br>
-	<div class = 'personality'>
-		<ul> Personality:
-			<li><%= "Agreeableness: #{(@yourlasttextsearch.personality_agreeableness*1000).floor/10.0}%" %> </li>
-			<li><%= "Extraversion: #{(@yourlasttextsearch.personality_extraversion*1000).floor/10.0}%" %> </li>
-			<li><%= "Conscientiousness: #{(@yourlasttextsearch.personality_conscientiousness*1000).floor/10.0}%" %> </li>
-			<li><%= "Openness: #{(@yourlasttextsearch.personality_openness*1000).floor/10.0}%" %> </li>
-		 </ul>
-	 </div>
-	 <div class = 'political'>
-		<ul> Political:
-			<li><%= "Conservative: #{(@yourlasttextsearch.political_conservative*1000).floor/10.0}%" %> </li>
-			<li><%= "Green: #{(@yourlasttextsearch.political_green*1000).floor/10.0}%" %> </li>
-			<li><%= "Liberal: #{(@yourlasttextsearch.political_liberal*1000).floor/10.0}%" %> </li>
-			<li><%= "Libertarian: #{(@yourlasttextsearch.political_libertarian*1000).floor/10.0}%" %> </li>
-		</ul>
-	</div>
-	<div class = 'myers-briggs'>
-		<ul>Myers-Briggs Analysis (Top 4/16):
-			<% @yourlasttextsearch.text_mbs.all.each do |n| %>
-			<li><%= "#{n.personality_type.capitalize}: #{(n.value*1000).floor/10.0}%" %> </li>
-			<% end %>
-		</ul>
+	<div class = 'container'>
+		<div class = 'personality'>
+			<ul> Personality:
+				<li><%= "Agreeableness: #{(@yourlasttextsearch.personality_agreeableness*1000).floor/10.0}%" %> </li>
+				<li><%= "Extraversion: #{(@yourlasttextsearch.personality_extraversion*1000).floor/10.0}%" %> </li>
+				<li><%= "Conscientiousness: #{(@yourlasttextsearch.personality_conscientiousness*1000).floor/10.0}%" %> </li>
+				<li><%= "Openness: #{(@yourlasttextsearch.personality_openness*1000).floor/10.0}%" %> </li>
+			 </ul>
+		 </div>
+		 <div class = 'political'>
+			<ul> Political:
+				<li><%= "Conservative: #{(@yourlasttextsearch.political_conservative*1000).floor/10.0}%" %> </li>
+				<li><%= "Green: #{(@yourlasttextsearch.political_green*1000).floor/10.0}%" %> </li>
+				<li><%= "Liberal: #{(@yourlasttextsearch.political_liberal*1000).floor/10.0}%" %> </li>
+				<li><%= "Libertarian: #{(@yourlasttextsearch.political_libertarian*1000).floor/10.0}%" %> </li>
+			</ul>
+		</div>
+		<div class = 'myers-briggs'>
+			<ul>Myers-Briggs Analysis (Top 4/16):
+				<% @yourlasttextsearch.text_mbs.all.each do |n| %>
+				<li><%= "#{n.personality_type.capitalize}: #{(n.value*1000).floor/10.0}%" %> </li>
+				<% end %>
+			</ul>
+		</div>
 	</div>
 	<!-- NOTE - currently using first(5) instead of .all to keep things to a manageable size! -->
-	<div class = 'topics'>
-		<ul>Most Relevant Topics (from a list of 111:)
-			<% @yourlasttextsearch.texttopics.first(5).each do |n| %>
-			<li><%= "#{n.topic.capitalize}: #{(n.value*1000).floor/10.0}%" %> </li>
-			<% end %>
-		</ul>
-	</div>
-	<div class = 'keywords'>
-		<ul>Keywords!
-			<% @yourlasttextsearch.textkeywords.all.each do |n| %>
-			<li><%= "#{n.keyword.capitalize}: #{(n.value*1000).floor/10.0}%" %> </li>
-			<% end %>
-		</ul>
+	<div class = 'container'>
+		<div class = 'topics'>
+			<ul>Most Relevant Topics (from a list of 111:)
+				<% @yourlasttextsearch.texttopics.first(5).each do |n| %>
+				<li><%= "#{n.topic.capitalize}: #{(n.value*1000).floor/10.0}%" %> </li>
+				<% end %>
+			</ul>
+		</div>
+		<div class = 'keywords'>
+			<ul>Keywords!
+				<% @yourlasttextsearch.textkeywords.all.each do |n| %>
+				<li><%= "#{n.keyword.capitalize}: #{(n.value*1000).floor/10.0}%" %> </li>
+				<% end %>
+			</ul>
+		</div>
 	</div>
 <% end %>	
 

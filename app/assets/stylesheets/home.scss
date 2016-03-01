@@ -40,7 +40,7 @@ color: $not_quite_black;
 	padding-top: 10px;
 	padding-bottom: 10px;
 	float: right;
-	margin-right: 3%;
+	margin-right: 5%;
 }
 
 #navbar ul:after {
@@ -70,33 +70,87 @@ color: $not_quite_black;
 	color: $light_blue;
 }
 
-#right-sidebar {
+#sidebar {
 	position: fixed;
 		right: 0;
 		top: 100px;
 	max-width: 300px;
 	margin-top: 100px;
 	margin-left: 20px;
-	background-color:rgba(0,0,0,0.2);
+	background-color:$not_quite_black;
+	background-opacity: 0.2;
 	border-radius: 5px;
+
+	ul {
+		background-color:$not_quite_black;
+		background-opacity: 0.2;
+		font-family: "Karla","Helvetica Neue",Helvetica,Arial,sans-serif;
+		min-width: 200px;
+		color: $not_quite_white;
+	}
+
+	 li {
+	 	background-color:$not_quite_black;
+
+	 }
+
+	a {
+		background-color:$not_quite_black;
+		background-opacity: 0.2;
+		color: $not_quite_white;
+		font-family: "Karla","Helvetica Neue",Helvetica,Arial,sans-serif;
+	}
+
+	a:hover {
+		background-color: $not_quite_black;
+		background-opacity: 0.2;
+		color: $light_blue;
+	}
+}
+
+.container {
+	display: block;
+	margin-top: 20px;
 }
 
 .personality {
 	display: inline-block;
+	border-top: 1px solid $light_blue;
+	border-left: 1px solid $light_blue;
+	margin-top: 20px;
+	margin-left: 20px;
 }
 
 .political {
 	display: inline-block;
+	border-top: 1px solid $light_blue;
+	border-left: 1px solid $light_blue;
+	margin-top: 20px;
+	margin-left: 20px;
 }
 
 .myers-briggs {
 	display: inline-block;
+	border-top: 1px solid $light_blue;
+	border-left: 1px solid $light_blue;
+	margin-top: 20px;
+	margin-left: 20px;
 }
 
 .topics {
+	display: inline-block;
+	border-top: 1px solid $light_blue;
+	border-left: 1px solid $light_blue;
+	margin-top: 20px;
+	margin-left: 20px;
 
 }
 
 .keywords {
+	display: inline-block;
+	border-top: 1px solid $light_blue;
+	border-left: 1px solid $light_blue;
+	margin-top: 20px;
+	margin-left: 20px;
 
 }
