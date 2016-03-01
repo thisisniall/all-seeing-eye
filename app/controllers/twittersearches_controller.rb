@@ -8,6 +8,7 @@ class TwittersearchesController < ApplicationController
 	end
 
 	def show
+		@user = current_user
 		@twittersearch = Twittersearch.find(params[:id])
 	end
 

@@ -10,8 +10,8 @@
 <body>
 	<nav id="navbar">
 		<span id= 'logo'>
-			<a href="about.html"><img src='assets/eyelogo.png'></a> <br>
-		 	<a href="about.html">we know what you <i>really</i> think.</a>
+			<a href="home/index.html"><img src='/assets/eyelogo.png'></a> <br>
+		 	<a href="home/index.html">we know what you <i>really</i> think.</a>
 		 </span>
 		<ul>
 			<li><%= link_to "about", "#", :class => "modal-link link"%></li>					
@@ -26,12 +26,12 @@
 		<% @recenttextsearches = @user.textsearches.last(5) %>
 		<ul>Your Last 5 Twitter Searches:
 			<% @recenttwittersearches.each do |n| %>
-				<li><%= link_to "@#{n.tweeter}", twittersearches_path(n)%><%=" #{time_ago_in_words(n.created_at)} ago" %></li>
+				<li><%= link_to "@#{n.tweeter}", twittersearch_path(n.id)%><%=" #{time_ago_in_words(n.created_at)} ago" %></li>
 			<% end %>
 		</ul>
 		<ul> Your Last 5 Text Searches:
 			<% @recenttextsearches.each do |n| %>
-				<li><%=  link_to "#{n.title}", textsearches_path(n) %><%=" #{time_ago_in_words(n.created_at)} ago" %></li>
+				<li><%=  link_to "#{n.title}", textsearch_path(n.id) %><%=" #{time_ago_in_words(n.created_at)} ago" %></li>
 			<% end %>
 		</ul>
 	</div>

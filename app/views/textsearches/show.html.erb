@@ -1,0 +1,47 @@
+<%if @textsearch %>
+	<h3> This Text Search: </h3>
+	<%= "Sentiment: #{(@textsearch.sentiment*1000).floor/10.0} % positive" %>
+	<br>
+	<div class = 'container'>
+		<div class = 'personality'>
+			<ul> Personality:
+				<li><%= "Agreeableness: #{(@textsearch.personality_agreeableness*1000).floor/10.0}%" %> </li>
+				<li><%= "Extraversion: #{(@textsearch.personality_extraversion*1000).floor/10.0}%" %> </li>
+				<li><%= "Conscientiousness: #{(@textsearch.personality_conscientiousness*1000).floor/10.0}%" %> </li>
+				<li><%= "Openness: #{(@textsearch.personality_openness*1000).floor/10.0}%" %> </li>
+			 </ul>
+		 </div>
+		 <div class = 'political'>
+			<ul> Political:
+				<li><%= "Conservative: #{(@textsearch.political_conservative*1000).floor/10.0}%" %> </li>
+				<li><%= "Green: #{(@textsearch.political_green*1000).floor/10.0}%" %> </li>
+				<li><%= "Liberal: #{(@textsearch.political_liberal*1000).floor/10.0}%" %> </li>
+				<li><%= "Libertarian: #{(@textsearch.political_libertarian*1000).floor/10.0}%" %> </li>
+			</ul>
+		</div>
+		<div class = 'myers-briggs'>
+			<ul>Myers-Briggs Analysis (Top 4/16):
+				<% @textsearch.text_mbs.all.each do |n| %>
+				<li><%= "#{n.personality_type.capitalize}: #{(n.value*1000).floor/10.0}%" %> </li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+	<!-- NOTE - currently using first(5) instead of .all to keep things to a manageable size! -->
+	<div class = 'container'>
+		<div class = 'topics'>
+			<ul>Most Relevant Topics (from a list of 111:)
+				<% @textsearch.texttopics.first(5).each do |n| %>
+				<li><%= "#{n.topic.capitalize}: #{(n.value*1000).floor/10.0}%" %> </li>
+				<% end %>
+			</ul>
+		</div>
+		<div class = 'keywords'>
+			<ul>Keywords!
+				<% @textsearch.textkeywords.all.each do |n| %>
+				<li><%= "#{n.keyword.capitalize}: #{(n.value*1000).floor/10.0}%" %> </li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+<%end>

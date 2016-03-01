@@ -9,6 +9,7 @@ class TextsearchesController < ApplicationController
 	end
 
 	def show
+		@user = current_user
 		@textsearch = Textsearch.find(params[:id])
 	end
 
