@@ -80,6 +80,11 @@ color: $not_quite_black;
 	background-color:$not_quite_black;
 	background-opacity: 0.2;
 	border-radius: 5px;
+	color: $not_quite_white;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	padding-right: 15px;
 
 	ul {
 		background-color:$not_quite_black;
@@ -91,6 +96,7 @@ color: $not_quite_black;
 
 	 li {
 	 	background-color:$not_quite_black;
+	 	color: $not_quite_white;
 
 	 }
 

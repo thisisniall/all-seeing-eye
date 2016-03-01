@@ -19,16 +19,16 @@
 
 <% if @user %>
 	<div id='sidebar'>
-		<% recenttwittersearches = @user.twittersearches.last(5) %>
-		<% recenttextsearches = @user.textsearches.last(5) %>
+		<% @recenttwittersearches = @user.twittersearches.last(5) %>
+		<% @recenttextsearches = @user.textsearches.last(5) %>
 		<ul>Your Last 5 Twitter Searches:
-			<% recenttwittersearches each do |n| %>
-				<li><%= "#{n.tweeter} time_ago_in_words(n.created_at)" %></li>
+			<% @recenttwittersearches.each do |n| %>
+				<li><%= "#{n.tweeter} #{time_ago_in_words(n.created_at)} ago" %></li>
 			<% end %>
 		</ul>
 		<ul> Your Last 5 Text Searches:
-			<% recenttextsearches each do |n| %>
-				<li><%=  "#{n.title} time_ago_in_words(n.created_at)" %></li>
+			<% @recenttextsearches.each do |n| %>
+				<li><%=  "#{n.title} #{time_ago_in_words(n.created_at)} ago" %></li>
 			<% end %>
 		</ul>
 	</div>
