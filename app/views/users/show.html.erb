@@ -1,0 +1,25 @@
+<% if @user.id == current_user %>
+
+<div id="account_settings">
+	<h2 class="skinny">Account Settings</h2>
+	<%= render partial: 'edit', local: {user: @user} %>
+	<br>
+</div>
+
+<div class="searchhistory">
+	<% @user.twittersearches.all.each do |n| %>
+	<ul>
+		<li><%= link_to "@#{n.tweeter}", twittersearch_path(n.id)%><%=" -  #{time_ago_in_words(n.created_at)} ago" %></li></li>
+	</ul>
+</div>
+
+<div class="searchhistory">
+	<% @user.textsearches.all.each do |n| %>
+	<ul>
+		<li><%=  link_to "#{n.title}", textsearch_path(n.id) %><%=" -  #{time_ago_in_words(n.created_at)} ago" %></li>
+	</ul>
+</div>
+
+<% else %>
+	flash[:alert] = "Sorry, you weren't authorized to access the last page you requested."
+<% end %>

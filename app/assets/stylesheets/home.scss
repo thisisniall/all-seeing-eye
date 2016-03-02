@@ -117,14 +117,14 @@ $dark_blue: #0b3536;
 		right: 0;
 		top: 100px;
 	max-width: 300px;
-	margin-top: 100px;
+	margin-top: 50px;
 	margin-left: 20px;
 	background-color:$not_quite_black;
 	background-opacity: 0.2;
 	border-radius: 5px;
-	border-left: 2px solid $light_blue;
-	border-top: 2px solid $light_blue;
-	border-bottom: 2px solid $light_blue;
+	border-left: 3px solid $light_blue;
+	border-top: 3px solid $light_blue;
+	border-bottom: 3px solid $light_blue;
 	color: $not_quite_white;
 	padding-top: 5px;
 	padding-bottom: 5px;
@@ -137,6 +137,16 @@ $dark_blue: #0b3536;
 		font-family: "Karla","Helvetica Neue",Helvetica,Arial,sans-serif;
 		min-width: 200px;
 		color: $not_quite_white;
+		margin-bottom: 10px;
+		padding-bottom: 5px;
+	}
+
+	h4 {
+		padding: 5px;
+		border-radius: 5px;
+		max-width: 250px;
+		margin-bottom: 5px;
+		text-align: center;
 	}
 
 	 li {
@@ -162,47 +172,47 @@ $dark_blue: #0b3536;
 
 .container {
 	display: block;
-	margin-top: 20px;
+	margin-top: 40px;
 }
 
 .personality {
 	display: inline-block;
-	border-top: 1px solid $light_blue;
-	border-left: 1px solid $light_blue;
-	margin-top: 20px;
-	margin-left: 20px;
+	border-top: 2px solid $light_blue;
+	border-left: 2px solid $light_blue;
+	margin-top: 40px;
+	margin-left: 40px;
 }
 
 .political {
 	display: inline-block;
-	border-top: 1px solid $light_blue;
-	border-left: 1px solid $light_blue;
-	margin-top: 20px;
-	margin-left: 20px;
+	border-top: 2px solid $light_blue;
+	border-left: 2px solid $light_blue;
+	margin-top: 40px;
+	margin-left: 40px;
 }
 
 .myers-briggs {
 	display: inline-block;
-	border-top: 1px solid $light_blue;
-	border-left: 1px solid $light_blue;
-	margin-top: 20px;
-	margin-left: 20px;
+	border-top: 2px solid $light_blue;
+	border-left: 2px solid $light_blue;
+	margin-top: 40px;
+	margin-left: 40px;
 }
 
 .topics {
 	display: inline-block;
-	border-top: 1px solid $light_blue;
-	border-left: 1px solid $light_blue;
-	margin-top: 20px;
-	margin-left: 20px;
+	border-top: 2px solid $light_blue;
+	border-left: 2px solid $light_blue;
+	margin-top: 40px;
+	margin-left: 40px;
 
 }
 
 .keywords {
 	display: inline-block;
-	border-top: 1px solid $light_blue;
-	border-left: 1px solid $light_blue;
-	margin-top: 20px;
-	margin-left: 20px;
+	border-top: 2px solid $light_blue;
+	border-left: 2px solid $light_blue;
+	margin-top: 40px;
+	margin-left: 40px;
 
 }

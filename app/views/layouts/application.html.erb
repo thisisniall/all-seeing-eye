@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>FinalProject</title>
+  <title>All-Seeing Eye</title>
   <%= stylesheet_link_tag    'application', media: 'all'%>
   <%= javascript_include_tag 'application'%>
   <%= csrf_meta_tags %>
@@ -33,14 +33,14 @@
 	<div id='sidebar'>
 		<% @recenttwittersearches = @user.twittersearches.last(5) %>
 		<% @recenttextsearches = @user.textsearches.last(5) %>
-		<ul>Your Last 5 Twitter Searches:
+		<ul><h4>Your Last 5 Twitter Searches:</h4>
 			<% @recenttwittersearches.each do |n| %>
-				<li><%= link_to "@#{n.tweeter}", twittersearch_path(n.id)%><%=" #{time_ago_in_words(n.created_at)} ago" %></li>
+				<li><%= link_to "@#{n.tweeter}", twittersearch_path(n.id)%><%=" -  #{time_ago_in_words(n.created_at)} ago" %></li>
 			<% end %>
 		</ul>
-		<ul> Your Last 5 Text Searches:
+		<ul> <h4>Your Last 5 Text Searches:</h4>
 			<% @recenttextsearches.each do |n| %>
-				<li><%=  link_to "#{n.title}", textsearch_path(n.id) %><%=" #{time_ago_in_words(n.created_at)} ago" %></li>
+				<li><%=  link_to "#{n.title}", textsearch_path(n.id) %><%=" -  #{time_ago_in_words(n.created_at)} ago" %></li>
 			<% end %>
 		</ul>
 	</div>
