@@ -10,14 +10,23 @@
 <body>
 	<nav id="navbar">
 		<span id= 'logo'>
-			<a href="home/index.html"><img src='/assets/eyelogo.png'></a> <br>
-		 	<a href="home/index.html">we know what you <i>really</i> think.</a>
+			<!-- for refactoring: switch these links to root path -->
+			<a href="/home/index.html"><img src='/assets/eyelogo.png'></a> <br>
+		 	<a href="/home/index.html">we know what you <i>really</i> think.</a>
 		 </span>
+		 <% if !current_user %> 
+		<ul>
+			<li><%= link_to "about", "#", :class => "modal-link link"%></li>					
+			<li><%= link_to "sign up", new_user_path, :class => "link" %></li>
+			<li><%= link_to "log in", log_in_path, :class => "link" %></li>
+		</ul>
+		<% else %>
 		<ul>
 			<li><%= link_to "about", "#", :class => "modal-link link"%></li>					
 			<li><%= link_to "account", user_path(@user), :class => "link" %></li>
 			<li><%= link_to "log out", log_out_path, :class => "link" %></li>
 		</ul>
+		<% end %>
 	</nav>
 
 <% if @user %>
