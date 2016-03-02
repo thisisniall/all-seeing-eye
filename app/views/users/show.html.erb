@@ -1,4 +1,4 @@
-<% if @user.id == current_user %>
+<% if @user == current_user %>
 
 <div id="account_settings">
 	<h2 class="skinny">Account Settings</h2>
@@ -7,17 +7,21 @@
 </div>
 
 <div class="searchhistory">
+	<h3> Twitter Search History </h3>
 	<% @user.twittersearches.all.each do |n| %>
 	<ul>
 		<li><%= link_to "@#{n.tweeter}", twittersearch_path(n.id)%><%=" -  #{time_ago_in_words(n.created_at)} ago" %></li></li>
 	</ul>
+	<% end %>
 </div>
 
 <div class="searchhistory">
+	<h3> Text Search History </h3>
 	<% @user.textsearches.all.each do |n| %>
 	<ul>
 		<li><%=  link_to "#{n.title}", textsearch_path(n.id) %><%=" -  #{time_ago_in_words(n.created_at)} ago" %></li>
 	</ul>
+	<% end %>
 </div>
 
 <% else %>

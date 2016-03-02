@@ -24,6 +24,8 @@ $dark_blue: #0b3536;
 	text-align: center;
 	margin-left: 0px;
 	margin: 0 auto;
+	// below is to fix the built-in margins
+	margin-left: -12px;
 	top: 0;
 	margin-bottom: 15px;
 	padding-bottom: 4px;
@@ -176,43 +178,92 @@ $dark_blue: #0b3536;
 }
 
 .personality {
+	vertical-align: top;
 	display: inline-block;
 	border-top: 2px solid $light_blue;
 	border-left: 2px solid $light_blue;
-	margin-top: 40px;
+	margin-top: 20px;
 	margin-left: 40px;
 }
 
 .political {
+	vertical-align: top;
 	display: inline-block;
 	border-top: 2px solid $light_blue;
 	border-left: 2px solid $light_blue;
-	margin-top: 40px;
+	margin-top: 20px;
 	margin-left: 40px;
 }
 
 .myers-briggs {
+	vertical-align: top;
 	display: inline-block;
 	border-top: 2px solid $light_blue;
 	border-left: 2px solid $light_blue;
-	margin-top: 40px;
+	margin-top: 20px;
 	margin-left: 40px;
 }
 
 .topics {
+	vertical-align: top;
 	display: inline-block;
 	border-top: 2px solid $light_blue;
 	border-left: 2px solid $light_blue;
-	margin-top: 40px;
+	margin-top: 20px;
 	margin-left: 40px;
 
 }
 
 .keywords {
+	vertical-align: top;
 	display: inline-block;
 	border-top: 2px solid $light_blue;
 	border-left: 2px solid $light_blue;
-	margin-top: 40px;
+	margin-top: 20px;
 	margin-left: 40px;
 
+}
+
+.searchhistory {
+	margin-top: 50px;
+	vertical-align: top;
+	display: inline-block;
+	width: 400px;
+	margin: 10px;
+	border: 3px solid $light_blue;
+	border-radius: 7px;
+	padding: 5px;
+
+	a {
+		color: $light_blue;
+	}
+
+	a:hover {
+		color: $not_quite_white;
+	}
+}
+
+#account_settings {
+	margin-top: 20vh;
+	vertical-align: top;
+	display: inline-block;
+	width: 400px;
+	margin: 10px;
+	border: 3px solid $light_blue;
+	border-radius: 7px;
+	padding: 5px;
+
+	label {
+		float: left;
+		margin-left: 10px;
+	}
+
+	input {
+		float: right;
+		margin-right: 10px;
+	}
+}
+
+#paddingdiv {
+	padding-top: 70px;
 }

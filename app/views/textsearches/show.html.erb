@@ -1,7 +1,11 @@
 <%if @textsearch %>
+	
+	<div class="searchheading">
 	<h3> This Text Search: </h3>
-	<%= "Sentiment: #{(@textsearch.sentiment*1000).floor/10.0} % positive" %>
-	<br>
+		<%= "Title: #{@textsearch.title}" %>
+		<br>
+		<%= "Sentiment: #{(@textsearch.sentiment*1000).floor/10.0} % positive" %>
+	</div>
 	<div class = 'container'>
 		<div class = 'personality'>
 			<ul> Personality:

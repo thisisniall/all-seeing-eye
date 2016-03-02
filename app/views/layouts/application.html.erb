@@ -29,6 +29,8 @@
 		<% end %>
 	</nav>
 
+	<div id='paddingdiv'></div>
+
 <% if @user %>
 	<div id='sidebar'>
 		<% @recenttwittersearches = @user.twittersearches.last(5) %>
