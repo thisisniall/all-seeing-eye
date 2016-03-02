@@ -1,12 +1,18 @@
 <!-- BACK-END CONNECTION -->
-<h2> Back-end-connected Twitter </h2>
-<%= form_for @twittersearch do |f| %> 
-	<%= f.label(:tweeter, "Tweets by Username") %>
-	<%= f.text_field(:tweeter)%>
-	<%=f.label(:retweet, "Check to include retweets in search results?") %>
-	<%=f.check_box(:retweet) %>
-	<%= submit_tag("Submit") %>
-<% end %>
+<div class="search">
+	<h2> Back-end-connected Twitter </h2>
+	<%= form_for @twittersearch do |f| %> 
+		<%= f.label(:tweeter, "Tweets by Username") %>
+		<%= f.text_field(:tweeter)%>
+		<br>
+		<br>
+		<%=f.label(:retweet, "Check to include retweets in search results?") %>
+		<%=f.check_box(:retweet) %>
+		<br>
+		<br>
+		<%= submit_tag("Submit") %>
+	<% end %>
+</div>
 <!-- HORIZON - WE KNOW WHAT YOU REALLY THINK -->
 
 <% @yourlasttwittersearch = @user.twittersearches.last %>
@@ -58,15 +64,20 @@
 <% end %>	
 
 <!-- BACK-END CONNECTION -->
-<h2> Back-end-connected Text </h2>
-<%= form_tag "/textsearches", method: "post" do %> 
-	<%= label_tag(:title, "Title:") %>
-	<%= text_field_tag(:title)%>
-	<%= label_tag(:text_to_analyze, "Text to Analyze:") %>
-	<%= text_area :text_to_analyze, cols: 20, rows: 40 %>
-	<%= submit_tag("Submit") %>
-<% end %>
-
+<div class="search">
+	<h2> Back-end-connected Text </h2>
+	<%= form_tag "/textsearches", method: "post" do %> 
+		<%= label_tag(:title, "Title:") %>
+		<%= text_field_tag(:title)%>
+		<br>
+		<br>
+		<%= label_tag(:text_to_analyze, "Text to Analyze:") %>
+		<%= text_area :text_to_analyze, nil, cols: 40, rows: 10 %>
+		<br>
+		<br>
+		<%= submit_tag("Submit", class: "submit_button")%>
+	<% end %>
+</div>
 <!-- (OTHER V) HORIZON - WE KNOW WHAT YOU REALLY THINK -->
 
 <% @yourlasttextsearch = @user.textsearches.last %>
@@ -74,8 +85,9 @@
 
 	<!--the .round() function of ruby ended up with some weird numbers, so I used a hacky method involving multiplication, .floor and division instead to get the results formatted in a more consistent manner -->
 
-	<h3> Your Last Text Search: </h3>
+	
 	<div class="searchheading">
+		<h3> Your Last Text Search: </h3>
 		<%= "Title: #{@yourlasttextsearch.title}" %>
 		<br>
 		<%= "Sentiment: #{(@yourlasttextsearch.sentiment*1000).floor/10.0} % positive" %>
