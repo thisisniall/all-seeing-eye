@@ -1,6 +1,6 @@
 <!-- BACK-END CONNECTION -->
 <div class="search">
-	<h2> Back-end-connected Twitter </h2>
+	<h2> Twitter Analysis: </h2>
 	<%= form_for @twittersearch do |f| %> 
 		<%= f.label(:tweeter, "Tweets by Username") %>
 		<%= f.text_field(:tweeter)%>
@@ -65,7 +65,7 @@
 
 <!-- BACK-END CONNECTION -->
 <div class="search">
-	<h2> Back-end-connected Text </h2>
+	<h2>Text Analysis: </h2>
 	<%= form_tag "/textsearches", method: "post" do %> 
 		<%= label_tag(:title, "Title:") %>
 		<%= text_field_tag(:title)%>
