@@ -4,7 +4,4 @@ class Twittersearch < ActiveRecord::Base
   has_many :twittertopics
   has_many :twitter_mbs
 
-	### IN MODEL
-
-	###
 end
