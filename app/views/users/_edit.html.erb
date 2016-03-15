@@ -1,23 +1,23 @@
 <%= form_for @user do |f| %>
 	<%= f.label :fname, "First Name:" %>
-	<%= f.text_field :fname, :class => "user_input" %>
+	<%= f.text_field :fname%>
 	<br>
 	<br>
 	<%= f.label :lname , "Last Name:" %>
-	<%= f.text_field :lname, :class => "user_input" %>
+	<%= f.text_field :lname%>
 	<br>
 	<br>
 	<%= f.label :email, "Email:" %>
-	<%= f.text_field :email, :class => "user_input"%>
+	<%= f.text_field :email%>
 	<br>
 	<br>
 	<%= f.label :password, "Password:" %>
-	<%= f.password_field :password, :class => "user_input"%>
+	<%= f.password_field :password%>
 	<br>
 	<br>
 	<%= f.label :password_confirmation, "Confirm Password:" %>
-	<%= f.password_field :password_confirmation, :class => "user_input"%>
+	<%= f.password_field :password_confirmation%>
 	<br>
 	<br>
-	<%= f.submit "Update Account", :class => "user_input button" %>
+	<%= f.submit "Update Account"%>
 <% end %>

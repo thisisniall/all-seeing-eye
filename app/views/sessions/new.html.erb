@@ -3,13 +3,13 @@
 	<%=form_tag log_in_path do%>
 		<br>
 		<%=label_tag :email %>
-		<%=text_field_tag :email, "", class: "user_input"%>
+		<%=text_field_tag :email, ""%>
 		<br>
 		<br>
 		<%=label_tag :password %>
-		<%=password_field_tag :password, "", class: "user_input" %>
+		<%=password_field_tag :password, ""%>
 		<br>
 		<br>
-		<%=submit_tag "Log in", :class => "top_space button user_input" %>
+		<%=submit_tag "Log in"%>
 	<%end%>
 </div>
