@@ -26,7 +26,9 @@ class TwittersearchesController < ApplicationController
 	    # cycles through text of various tweets, compiles them into a single string for analysis
 		@tweets = $twitter.search("from:#{@whosaidit}" + " filter:images "+"#{@RToption}").take(30)
 		@tweets.each do |tweet|
-			@twitteranalysis = @twitteranalysis + tweet.text
+			if tweet.present?
+				@twitteranalysis = @twitteranalysis + tweet.text
+			end
 		end
 
 		#### calls to indico APIs (future move to library?)
